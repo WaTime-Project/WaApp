@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv('C:/Users/rants/Documents/Capstone-Project/Watime_App/watime-modified/machine_learning/dataset/WaTime_Dataset.csv', sep=',')
+df = pd.read_csv('/machine_learning/dataset/WaTime_Dataset.csv', sep=',')
 
 X = df.drop('soil_moisture',axis=1)
 y = np.array(df['soil_moisture'])
