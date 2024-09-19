@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 try:
     model = joblib.load('randomForestModel.joblib')
+    print('Model successfully created...')
 except Exception as e:
     print(f"Error loading model: {e}")
     model = None
