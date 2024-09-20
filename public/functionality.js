@@ -71,7 +71,7 @@ function weatherApp() {
             try {
                 const features = await this.extractWeatherFeatures();
 
-                const response = await axios.post('https://waapp-ufaa.onrender.com/predict', {
+                const response = await axios.post('/weather/soilMoisture/predict', {
                     features: features
                 });
 
@@ -123,7 +123,7 @@ function weatherApp() {
                         this.city = cityName;
 
                         // Fetch weather data based on the location
-                        const url = `/weather/${cityName}`; //http://localhost:3000
+                        const url = `/weather/${cityName}`; 
                         await this.fetchWeather(url);
                         await this.getSoilMoisturePrediction();
                     },
