@@ -71,7 +71,7 @@ function weatherApp() {
             try {
                 const features = await this.extractWeatherFeatures();
 
-                const response = await axios.post('/weather/soilMoisture/predict', {
+                const response = await axios.post('/predict', {
                     features: features
                 });
 
