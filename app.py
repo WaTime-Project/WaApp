@@ -12,7 +12,7 @@ except Exception as e:
     print(f"Error loading model: {e}")
     model = None
 
-@app.route('/weather/soilMoisture/predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     if model is None:
         return jsonify({'error': 'Model not loaded'}), 500
