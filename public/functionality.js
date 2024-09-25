@@ -71,7 +71,7 @@ function weatherApp() {
             try {
                 const features = await this.extractWeatherFeatures();
 
-                const response = await axios.post('https://waapp-ufaa.onrender.com/predict', {
+                const response = await axios.post('https://waapp-ufaa.onrender.com:3000/predict', {
                     features: features
                 });
 
