@@ -17,7 +17,7 @@ const app = express();
 const db = new sqlite3.Database('users.db');
 
 dotenv.config();
-app.use(cors());
+app.use(cors()); // {origin: '127.0.0.1'}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
