@@ -2,12 +2,19 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import numpy as np
 import joblib
+import serial
+import time
+
+# time.sleep(2)
+# ser = serial.Serial('COM5', 9600, timeout=1) 
+# time.sleep(2)
+# ser.reset_input_buffer()
 
 app = Flask(__name__)
 
 try:
     model = joblib.load('randomForestModel.joblib')
-    print('Model successfully created...')
+    print('Model successfully loaded...')
 except Exception as e:
     print(f"Error loading model: {e}")
     model = None
@@ -20,21 +27,37 @@ def predict():
     try:
         data = request.json
         features = data.get('features')
-        
+
         if not features:
             return jsonify({'error': 'No features provided'}), 400
 
         features = np.array(features).reshape(1, -1)
-
-        features = pd.DataFrame(features, columns=['temperature_2m (°C)', 'relative_humidity_2m (%)', 'rain (mm)', 'surface_pressure (hPa)', 'cloud_cover (%)', 'wind_direction_10m (°)', 'snowfall(mm)', 'wind_speed(m/s)', 'wind_gust(m/s)']) 
+        features = pd.DataFrame(features, columns=[
+            'temperature_2m (°C)', 'relative_humidity_2m (%)', 'rain (mm)', 
+            'surface_pressure (hPa)', 'cloud_cover (%)', 'wind_direction_10m (°)', 
+            'snowfall(mm)', 'wind_speed(m/s)', 'wind_gust(m/s)'
+        ]) 
 
         prediction = model.predict(features)[0]
-        return jsonify({'prediction': prediction})
 
+        # ser.write(f"{prediction}\n".encode('utf-8'))
+        # # print("Irrigation pump turned off.")
+        # print(f"Predicted value {prediction} sent to Arduino via COM2")
+
+        # time.sleep(5) 
+
+        # ser.write(f"{15.5}\n".encode('utf-8'))
+        # print("Irrigation pump turned off.")
+
+        return jsonify({'prediction': prediction})
+    
     except Exception as e:
         print(f"Error during prediction: {e}")
         return jsonify({'error': 'Prediction failed', 'details': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True) #host='0.0.0.0', 
-
+    try:
+        app.run(host='0.0.0.0', port=3000, debug=True)
+    finally:
+        if ser.is_open:
+            ser.close()
