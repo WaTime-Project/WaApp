@@ -6,9 +6,11 @@ import serial
 import time
 
 # time.sleep(2)
-# ser = serial.Serial('COM5', 9600, timeout=1) 
+# ser = serial.Serial('COM5', 9600, timeout=1 ) 
 # time.sleep(2)
 # ser.reset_input_buffer()
+
+# print('Is COM5 open?', ser.isOpen())
 
 app = Flask(__name__)
 
@@ -39,15 +41,11 @@ def predict():
         ]) 
 
         prediction = model.predict(features)[0]
-
+        # if not ser.isOpen():
+        #     ser.open()
+        # print('com55 is open', ser.isOpen())
         # ser.write(f"{prediction}\n".encode('utf-8'))
-        # # print("Irrigation pump turned off.")
-        # print(f"Predicted value {prediction} sent to Arduino via COM2")
-
-        # time.sleep(5) 
-
-        # ser.write(f"{15.5}\n".encode('utf-8'))
-        # print("Irrigation pump turned off.")
+        print(f"Predicted value {prediction} sent to Arduino via COM5")
 
         return jsonify({'prediction': prediction})
     
@@ -56,8 +54,8 @@ def predict():
         return jsonify({'error': 'Prediction failed', 'details': str(e)}), 500
 
 if __name__ == '__main__':
-    try:
-        app.run(host='0.0.0.0', port=3000, debug=True)
-    finally:
-        if ser.is_open:
-            ser.close()
+    # try:
+    app.run(host='0.0.0.0', port=10000, debug=True)
+    # finally:
+    #     if ser.is_open:
+    #         ser.close()
