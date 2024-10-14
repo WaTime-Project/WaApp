@@ -19,10 +19,10 @@ function weatherApp() {
                 alert('Please enter a city');
                 return;
             }
-            await this.fetchWeather(`http://localhost:3000/weather/${this.city}`);
+            await this.fetchWeather(`/weather/${this.city}`);
         },
         async getWeatherData() {
-            const url = `http://localhost:3000/weather/${this.city}`;
+            const url = `/weather/${this.city}`;
 
             try {
                 console.log('Fetching weather data from OpenWeatherMap API...');
@@ -71,7 +71,7 @@ function weatherApp() {
             try {
                 const features = await this.extractWeatherFeatures();
 
-                const response = await axios.post('http://localhost:3000/predict', {
+                const response = await axios.post('https://waapp-ufaa.onrender.com/10000/predict', {
                     features: features
                 });
 
@@ -123,7 +123,7 @@ function weatherApp() {
                         this.city = cityName;
 
                         // Fetch weather data based on the location
-                        const url = `http://localhost:3000/weather/${cityName}`; 
+                        const url = `/weather/${cityName}`; 
                         await this.fetchWeather(url);
                         await this.getSoilMoisturePrediction();
                     },
