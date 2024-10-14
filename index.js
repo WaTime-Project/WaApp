@@ -17,9 +17,9 @@ const app = express();
 const db = new sqlite3.Database('users.db');
 
 dotenv.config();
-app.use(cors({
-    origin: 'http://127.0.0.1:5500'
-}));
+app.use(cors(
+    // origin: 'http://127.0.0.1:5500'
+));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -152,7 +152,7 @@ app.post('/predict', async (req, res) => {
         res.json(predictionResult);
     } catch (error) {
         console.error('Error making prediction:', error);
-        res.status(500).json({ error: 'Failed to process the prediction request.' });
+        res.status(500).json({ error: error });
     }
 });
 
