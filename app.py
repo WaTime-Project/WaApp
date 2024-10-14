@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import serial
 import time
+import os
 
 # time.sleep(2)
 # ser = serial.Serial('COM5', 9600, timeout=1 ) 
@@ -53,9 +54,10 @@ def predict():
         print(f"Error during prediction: {e}")
         return jsonify({'error': 'Prediction failed', 'details': str(e)}), 500
 
+PORT = os.environ.get('PORT', 3000)
 if __name__ == '__main__':
     # try:
-    app.run(host='0.0.0.0', port=10000, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
     # finally:
     #     if ser.is_open:
     #         ser.close()
