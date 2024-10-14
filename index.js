@@ -143,7 +143,7 @@ app.post('/predict', async (req, res) => {
             return res.status(400).json({ error: 'Invalid features array.' });
         }
 
-        const modelResponse = await axios.post('/predict', {
+        const modelResponse = await axios.post('https://waapp-ufaa.onrender.com:10000/predict', {
             features: features, 
         });
 
