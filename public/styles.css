@@ -1,35 +1,25 @@
-/* Reset some default browser styling */
-body, input, button {
+body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('assets/ash.jpg'); 
+    background-size: cover; 
+    background-position: top;
+    background-repeat: no-repeat; 
     position: relative;
 }
 
-/* Center the form on the page */
-body {
-    /* height: 100vh; */
-    background-image: url('assets/ash.jpg'); /* Path to your image */
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-position: center; /* Centers the background image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    position: relative;/* Prevents the image from repeating */
-}
-
-/* Overlay styling */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
-/* Navigation Bar */
 .navbar {
+    display: flex;
+    justify-content: space-between;
     background-color: #333;
     position: fixed;
     top: 0;
@@ -40,12 +30,11 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation Links */
 .navbar-links {
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align:left
 }
 
 .navbar-links li {
@@ -53,7 +42,7 @@ body {
     margin: 0 15px;
 }
 
-.navbar-links .nav-link {
+.navbar-links .nav-link{
     color: white;
     text-decoration: none;
     font-size: 16px;
@@ -63,10 +52,13 @@ body {
 }
 
 .navbar-links .nav-link:hover {
-    color: #9e9e9e; /* Highlight on hover */
+    color: #9e9e9e; 
 }
 
-/* Content wrapper */
+.logo{
+    margin-left: 30px;
+}
+
 .content {
     position: relative;
     z-index: 2;
@@ -77,7 +69,6 @@ body {
     
 }
 
-/* Form title styling */
 .form-title {
     margin-bottom: 20px;
     font-size: 24px;
@@ -85,7 +76,6 @@ body {
     text-align: center;
 }
 
-/* Form container styling */
 form {
     background-color: #ffffff;
     padding: 20px;
@@ -96,7 +86,6 @@ form {
     box-sizing: border-box;
 }
 
-/* Input fields styling */
 input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
     padding: 12px;
@@ -106,7 +95,6 @@ input[type="text"], input[type="email"], input[type="password"] {
     box-sizing: border-box;
 }
 
-/* Button styling */
 button {
     width: 100%;
     padding: 12px;
@@ -125,7 +113,7 @@ button:hover {
 .irrigation_status, .irrigation_status, .loadModel{
     color: #f7f9fc;
 }
-/* Message paragraph styling */
+
 p {
     margin-top: 20px;
     color: white;
@@ -141,7 +129,6 @@ p {
     color: #07ff3d;
 }
 
-/* Optional: Styling for a link to switch between login/signup pages */
 .switch-link {
     margin-top: 10px;
     display: block;
@@ -158,25 +145,13 @@ p {
     align-items: center;
 }
 
-
-/* Dashboard Container */
 .dashboard-container, .irrigationStates {
     position: relative;
     z-index: 2;
-    /* max-width: 600px; */
-    /* margin: 100px auto 0;  */
     padding: 40px;
-    /* background-color: #ffffff; */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-    position: relative; */
-    /* top: 50%;
-    transform: translateY(-50%); */
-    
+    margin-top: 20px;
 }
 
-/* Dashboard Header */
 .dashboard-header h1 {
     margin-bottom: 10px;
     font-size: 2em;
@@ -189,12 +164,10 @@ p {
     color: #777;
 }
 
-/* Dashboard Content */
 .dashboard-content {
     margin-bottom: 30px;
 }
 
-/* Logout Link Styling */
 .logout-link {
     color: #ff4b5c;
     text-decoration: none;
@@ -208,7 +181,6 @@ p {
     color: #ff6f61;
 }
 
-/* Dashboard Footer */
 .dashboard-footer {
     margin-top: 20px;
 }
@@ -219,7 +191,6 @@ p {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    /* backdrop-filter: blur(10px); */
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     z-index: 2;
@@ -237,33 +208,32 @@ p {
     max-width: 10%;
 }
 
-
-/* Weather icon styling */
 #weather-icon {
     width: 100px;
     margin: 20px auto;
     display: block;
 }
 
-/* Temperature styling */
 #temp-div {
     font-size: 2.5em;
     color: #ffffff;
     margin: 20px 0;
 }
 
-/* Weather information styling */
 #weather-info p {
     font-size: 1.2em;
     color: #ffffff;
 }
 
-/* Hourly forecast styling */
 #hourly-forecast {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
+
+/* .cityDescrip{
+    display: flex;
+} */
 
 .hourly-item {
     background-color: #f7f9fc;
@@ -286,7 +256,6 @@ p {
     margin-top: 5px;
 }
 
-/* Media queries for responsiveness */
 @media screen and (max-width: 600px) {
     .dashboard-container {
         padding: 20px;
@@ -318,7 +287,7 @@ p {
 
 .tips {
     margin: 50px;
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.5); 
     background-image: url('assets/ash.jpg');
     background-repeat: no-repeat;
     background-position:1000%; 
@@ -329,10 +298,10 @@ p {
     text-align:center;
     text-decoration:underline;
     color: white;
-    margin-bottom: 10px; /* Add space below heading */
+    margin-bottom: 10px;
 }
 .tip p {
-    flex: 1; /* Allows the paragraph to take up remaining space */
+    flex: 1; 
 }
 
 

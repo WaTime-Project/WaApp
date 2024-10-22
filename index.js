@@ -9,25 +9,20 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-// Setup __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+dotenv.config();
 const db = new sqlite3.Database('users.db');
 
-dotenv.config();
-app.use(cors(
-    // origin: 'http://127.0.0.1:5500'
-));
-
+app.use(cors({
+    origin: 'http://127.0.0.1:5500'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Signup route
 app.post('/signup', async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -36,14 +31,13 @@ app.post('/signup', async (req, res) => {
             if (err) {
                 return res.status(500).json({ error: 'User already exists or database error' });
             }
-            res.status(201).json({ message: 'User created successfully' });
+            res.status(201).json({ message: 'User Account created successfully. Try to login now...' });
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error creating user' });
+        res.status(500).json({ error: 'Error creating user account' });
     }
 });
 
-// Login route
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -74,21 +68,15 @@ app.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'profile.html'));
 });
 
-app.get('/myfield', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'myfield.html'));
-});
-
 app.get('/logout', (req, res) => {
-    // If using sessions, you would destroy the session here
-    // req.session.destroy(err => {
-    //     if (err) {
-    //         return res.redirect('/dashboard');
-    //     }
-    //     res.clearCookie('sessionId');
-    //     res.redirect('/login');
-    // });
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/dashboard');
+        }
+        res.clearCookie('sessionId');
+        res.redirect('/login');
+    });
 
-    // For simplicity, just redirect to login
     res.redirect('/login.html');
 });
 
@@ -143,8 +131,8 @@ app.post('/predict', async (req, res) => {
             return res.status(400).json({ error: 'Invalid features array.' });
         }
 
-        const modelResponse = await axios.post('https://waapp-ufaa.onrender.com/predict', {
-            features: features, 
+        const modelResponse = await axios.post('http://localhost:3000/predict', {
+            features: features
         });
 
         const predictionResult = modelResponse.data;
@@ -156,6 +144,8 @@ app.post('/predict', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log(`Server running on port ${3000}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
