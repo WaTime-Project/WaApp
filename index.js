@@ -69,13 +69,17 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.redirect('/dashboard');
-        }
-        res.clearCookie('sessionId');
-        res.redirect('/login');
-    });
+
+    // If using sessions, you would destroy the session here
+    // req.session.destroy(err => {
+    //     if (err) {
+    //         return res.redirect('/dashboard');
+    //     }
+    //     res.clearCookie('sessionId');
+    //     res.redirect('/login');
+    // });
+
+    // For simplicity, just redirect to login
 
     res.redirect('/login.html');
 });

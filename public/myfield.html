@@ -13,7 +13,16 @@
 </head>
 
 <body>
-    <nav class="navbar">
+
+  <div class="overlay"></div>
+
+  <nav class="navbar">
+    <div class="logo">
+        <ul class="navbar-links">
+            <li><a href="/dashboard" class="nav-link">WaTime App</a></li>
+        </ul>
+    </div>
+    <div>
         <ul class="navbar-links">
             <li><a href="/dashboard" class="nav-link">Home</a></li>
             <li><a href="/myfield" class="nav-link">My Field</a></li>
@@ -21,7 +30,8 @@
             <li><a href="/profile" class="nav-link">Profile</a></li>
             <li><a href="/logout" class="nav-link">Logout</a></li>
         </ul>
-    </nav>
+    </div>
+</nav>
    
     <!-- Single x-data declaration for the entire container -->
     <div class="container" x-data="irrigationData()">
@@ -45,7 +55,7 @@
   
           <!-- Start/Stop Irrigation -->
           <div class="control">
-            <h3>Irrigation Control</h3>
+            <h3 style="color: rgb(185, 185, 185);">Irrigation Control</h3>
             <button class="startBtn" @click="startIrrigation" :disabled="isIrrigating">
               Start Irrigation
             </button>
@@ -56,7 +66,7 @@
   
           <!-- Display Alerts -->
           <div class="alerts">
-              <p x-text="alerts"></p> <!-- Show alerts dynamically -->
+              <p style="color: rgb(4, 255, 67);" x-text="alerts"></p> <!-- Show alerts dynamically -->
           </div>
         </div>
   
