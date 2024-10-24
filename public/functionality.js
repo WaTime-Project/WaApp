@@ -11,6 +11,7 @@ function weatherApp() {
         snowfall: '',
         cloud_cover: '',
         cityName: '',
+        visibility: 0,
         description: '',
         weatherIconUrl: '',
         hourlyForecast: [],
@@ -23,9 +24,9 @@ function weatherApp() {
         noIrrigation: '',
         evapotranspiration: 0.0,
 
-        init() {
-            this.getWeatherByLocation();
-        },
+        // init() {
+        //     this.getWeatherByLocation();
+        // },
         async getWeatherByCity() {
             if (!this.city) {
                 alert('Please enter a city');
@@ -84,16 +85,16 @@ function weatherApp() {
                     features: features
                 });
 
-                const rainfall = features[2];
-                const snowfall = features[6];
-                const precipitation = rainfall + snowfall;
+                // const rainfall = features[2];
+                // const snowfall = features[6];
+                // const precipitation = rainfall + snowfall;
 
                 const predictionData = response.data;
 
                 this.prediction = predictionData.prediction;
                 //ET: EvapoTranspiration
                 this.evapotranspiration = this.getEvapotranspiration();
-                this.irrigateDecision = this.shouldIrrigate(this.prediction, this.evapotranspiration, precipitation);
+                this.irrigateDecision = this.shouldIrrigate(this.prediction, this.evapotranspiration);
 
                 return predictionData;
             } catch (error) {
@@ -103,7 +104,7 @@ function weatherApp() {
                 this.loading = false;
             }
         },
-        shouldIrrigate(predictedMoisture, evapoTranspiration, precipitation) {
+        shouldIrrigate(predictedMoisture, evapoTranspiration) {
             const date = new Date();
             const currentHour = date.getHours();
             
@@ -111,15 +112,15 @@ function weatherApp() {
             
 
             //Add the equation to handle moisture level to handle irrigation schedule
-            if(precipitation === 0.0){
+            // if(precipitation === 0.0){
                 //An irrigation time interval (between 5 & 8:59; between 16 & 17:59)
-                if(currentHour >= 5 && currentHour <= 8 || currentHour >= 16 && currentHour <= 17){
+            if(currentHour >= 5 && currentHour <= 8 || currentHour >= 16 && currentHour <= 17){
 
-                    if (predictedMoisture <= 20) {
-                        return this.irrigation = 'irrigate';
-                    }
+                if (predictedMoisture <= 20) {
+                    return this.irrigation = 'irrigate';
                 }
-            } else {
+            }
+             else {
                 return this.noIrrigation = 'No irrigation';
             }
         },
@@ -132,6 +133,9 @@ function weatherApp() {
                 const dailyAvgTemp = (maxTemp + minTemp) / 2;
                 const humidity = data.main.humidity;
                 const windSpeed = data.wind.speed;
+                this.visibility = data.visibility;
+                this.rain = data.rain && data.rain['1h'] ? data.rain['1h'] : 0;
+                this.snowfall = data.snow && data.snow['1h'] ? data.snow['1h'] : 0;
                 const solarRadiation = 20; // On clear, sunny days, solar radiation range from 15 - 25
                 
                 const albedo = 0.23;

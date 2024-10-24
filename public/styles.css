@@ -59,6 +59,19 @@ body {
     margin-left: 30px;
 }
 
+.navbarTabs{
+    margin-right: 30px;
+}
+
+.weatherVariables{
+    display: flex;
+    
+
+}
+
+.weatherVars, .cityDescrip{
+    color: grey;
+}
 .content {
     position: relative;
     z-index: 2;
@@ -110,7 +123,7 @@ button:hover {
     background-color: rgb(29, 29, 29);
 }
 
-.irrigation_status, .irrigation_status, .loadModel{
+.irrigation_status, .loadModel{
     color: #f7f9fc;
 }
 
@@ -208,6 +221,7 @@ p {
     max-width: 10%;
 }
 
+
 #weather-icon {
     width: 100px;
     margin: 20px auto;
@@ -216,24 +230,26 @@ p {
 
 #temp-div {
     font-size: 2.5em;
-    color: #ffffff;
     margin: 20px 0;
 }
 
 #weather-info p {
     font-size: 1.2em;
-    color: #ffffff;
 }
 
-#hourly-forecast {
+#hourly-forecast, .weatherDetails {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-/* .cityDescrip{
-    display: flex;
-} */
+.weatherDetails{
+    background-color: #f7f9fc;
+    border: 1px solid #dce3eb;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
 
 .hourly-item {
     background-color: #f7f9fc;
