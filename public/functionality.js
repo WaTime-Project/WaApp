@@ -119,8 +119,8 @@ function weatherApp() {
                 if (predictedMoisture <= 20) {
                     return this.irrigation = 'irrigate';
                 }
-            }
-             else {
+            
+            } else {
                 return this.noIrrigation = 'No irrigation';
             }
         },
