@@ -24,9 +24,9 @@ function weatherApp() {
         noIrrigation: '',
         evapotranspiration: 0.0,
 
-        // init() {
-        //     this.getWeatherByLocation();
-        // },
+        init() {
+            this.getWeatherByLocation();
+        },
         async getWeatherByCity() {
             if (!this.city) {
                 alert('Please enter a city');
