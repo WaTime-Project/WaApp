@@ -32,10 +32,10 @@ function weatherApp() {
                 alert('Please enter a city');
                 return;
             }
-            await this.fetchWeather(`http://localhost:3000/weather/${this.city || 'johannesburg'}`);
+            await this.fetchWeather(`/weather/${this.city || 'johannesburg'}`);
         },
         async getWeatherData() {
-            const url = `http://localhost:3000/weather/${this.city || 'johannesburg'}`;
+            const url = `/weather/${this.city || 'johannesburg'}`;
 
             try {
                 console.log('Fetching weather data from OpenWeatherMap API...');
@@ -81,7 +81,7 @@ function weatherApp() {
             try {
                 const features = await this.extractWeatherFeatures();
 
-                const response = await axios.post('http://localhost:3000/predict', {
+                const response = await axios.post('/predict', {
                     features: features
                 });
 

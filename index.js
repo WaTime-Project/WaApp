@@ -17,7 +17,7 @@ dotenv.config();
 const db = new sqlite3.Database('users.db');
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500'
+    // origin: 'http://127.0.0.1:5500'
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -135,7 +135,7 @@ app.post('/predict', async (req, res) => {
             return res.status(400).json({ error: 'Invalid features array.' });
         }
 
-        const modelResponse = await axios.post('http://localhost:3000/predict', {
+        const modelResponse = await axios.post('https://waapp-h5tl.onrender.com/predict', {
             features: features
         });
 
