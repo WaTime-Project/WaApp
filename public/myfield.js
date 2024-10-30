@@ -3,7 +3,8 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('irrigationData', () => ({
         temperature: "",
         forecast: "",
-        nextWatering: "Tomorrow, 5:00 AM",
+        nextWatering: "Afternoon, 4:00 PM",
+        //nextWatering: "Tomorrow, 5:00 AM",
         alerts: "System is ready.", // Single definition for alerts
         isIrrigating: false, // Track if irrigation is running
         status: "All good",
