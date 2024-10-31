@@ -6,8 +6,8 @@ import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from 'url.js';
+import { dirname } from 'path.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
