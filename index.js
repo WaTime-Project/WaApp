@@ -6,8 +6,8 @@ import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { fileURLToPath } from 'url.js';
-import { dirname } from 'path.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,9 +16,9 @@ const app = express();
 dotenv.config();
 const db = new sqlite3.Database('users.db');
 
-app.use(cors({
-    // origin: 'http://127.0.0.1:5500'
-}));
+// app.use(cors({
+//     // origin: 'http://127.0.0.1:5500'
+// }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
